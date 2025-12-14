@@ -47,10 +47,6 @@ public class GameManager : MonoBehaviour
     public float BlurIntensity = 0.0f;
     // -----------------------------------------
 
-    /// <summary>
-    /// Called when the script instance is being loaded.
-    /// Implements the Singleton pattern and ensures persistence.
-    /// </summary>
     private void Awake()
     {
         // 1. Check if an instance already exists
@@ -69,27 +65,12 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
 
         Debug.Log("GameManager initialized and set to persist across scenes.");
-
-        // Optional: Load initial values from PlayerPrefs or a save file here if needed
-        // LoadSettings();
     }
-
-    // --- Public Methods to Update Settings from UI ---
-
-    /// <summary>
-    /// Updates the music toggle state.
-    /// </summary>
-    /// <param name="isOn">The new boolean value from a Toggle UI element.</param>
     public void SetMusicToggle(bool isOn)
     {
         MusicToggle = isOn;
         Debug.Log($"Music Toggle set to: {isOn}");
     }
-
-    /// <summary>
-    /// Updates the SFX toggle state.
-    /// </summary>
-    /// <param name="isOn">The new boolean value from a Toggle UI element.</param>
     public void SetSFXToggle(bool isOn)
     {
         SFXToggle = isOn;
@@ -108,39 +89,25 @@ public class GameManager : MonoBehaviour
         DyslexiaToggle = isOn;
         Debug.Log($"Dyslexia Toggle set to: {isOn}");
     }
-    // ---------------------------------------------
-
-    /// <summary>
-    /// Updates the master volume level.
-    /// </summary>
-    /// <param name="volume">The new float value from a Slider UI element.</param>
+    // --------------------------------------------
     public void SetMasterVolume(float volume)
     {
         MasterVolume = volume;
         Debug.Log($"Master Volume set to: {volume:F2}");
     }
-
-    /// <summary>
-    /// Updates the player sensitivity setting.
-    /// </summary>
-    /// <param name="sens">The new float value from a Slider UI element.</param>
+    
     public void SetSensitivity(float sens)
     {
         Sensitivity = sens;
         Debug.Log($"Sensitivity set to: {sens:F2}");
     }
 
-    /// <summary>
-    /// Updates the autism-friendly filtering level.
-    /// </summary>
-    /// <param name="level">The new float value from a Slider UI element (0.0 to 1.0).</param>
     public void SetAutismFilterLevel(float level)
     {
         AutismFilterLevel = level;
         Debug.Log($"Autism Filter Level set to: {level:F2}");
     }
 
-    // --- NEW SETTER METHODS FOR MISSING SLIDERS ---
     public void SetDarknessLevel(float level)
     {
         DarknessLevel = level;
@@ -155,11 +122,6 @@ public class GameManager : MonoBehaviour
     // ----------------------------------------------
     
     // --- NEW FUNCTION TO LOAD SCENES ---
-    
-    /// <summary>
-    /// Loads a scene by its name. This function is typically connected to a UI Button.
-    /// </summary>
-    /// <param name="sceneName">The exact name of the scene to load (must be in Build Settings).</param>
     public void LoadSceneByName(string sceneName)
     {
         if (string.IsNullOrEmpty(sceneName))
@@ -169,9 +131,7 @@ public class GameManager : MonoBehaviour
         }
 
         Debug.Log($"Attempting to load scene: {sceneName}");
-        
-        // This will load the scene asynchronously but immediately.
-        // It's crucial the scene is added to your Build Settings (File > Build Settings).
         SceneManager.LoadScene(sceneName);
     }
+
 }
